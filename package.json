@@ -2,10 +2,7 @@
     "name": "node-http-server",
     "version": "1.0.0",
     "description": "Node.js example server starter project",
-    "main": "./server.js",
-    "engines": {
-      "node": "16.x"
-    },
+    "main": "./server.js",    
     "scripts": {
       "start": "nodemon ./server.js"
     },

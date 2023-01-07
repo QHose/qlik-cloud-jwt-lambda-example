@@ -1,10 +1,10 @@
 const jsonWebToken = require("jsonwebtoken");
 const fs = require("fs");
-const config = require("../config/config");
+const config = require("./config");
 const { v4: uuidv4 } = require("uuid");
 
-const key = fs.readFileSync(".data/private.key.txt", "utf8");
-//const key = Buffer.from(process.env.crt, 'utf-8').toString();
+const key = fs.readFileSync("./privatekey.pem", "utf8");
+
 const methods = {
   generate: function (sub, name, email, groups = []) {
     // kid and issuer have to match with the IDP config and the audience has to be qlik.api/jwt-login-session
@@ -14,7 +14,7 @@ const methods = {
       algorithm: "RS256",
       issuer: config.issuer,
       expiresIn: "30s",
-      notBefore: "0s",
+      notBefore: "-30s",
       audience: "qlik.api/login/jwt-session"
     };
 
@@ -29,10 +29,13 @@ const methods = {
       email_verified: true,
       groups: groups
     };
+    // console.log("🚀 ~ file: token.js:32 ~ key used to sign the JWT: ", key)
 
     const token = jsonWebToken.sign(payload, key, signingOptions);
+    // console.log("🚀 ~ file: token.js:34 ~ payload", payload)
     return token;
   }
-};
+  } 
+
 
 module.exports = methods;
