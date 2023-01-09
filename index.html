@@ -9,9 +9,9 @@
 
         //    CONFIGURATION
 
-        const TENANT = 'bies.eu.qlikcloud.com';
+        const TENANT = '2bj9wrrirrxfbef.eu.qlikcloud.com';
         const JWTENDPOINT = '/token';
-        const WEBINTEGRATIONID = 'OdLshfnflDBoAeq1-WsEvkfCDpt7UfNg' //DbN1BlXAMCfX2MwVbsrzrFuK848gKXPm';
+        const WEBINTEGRATIONID = 'sjMKWkCfEaTrNzAoGcHYb1hKjKdsSun9' //DbN1BlXAMCfX2MwVbsrzrFuK848gKXPm';
         const APPID = 'c8133385-b9bf-4b27-af62-1faf52db8f1a'
         const SHEETID = 'XkgjPf';
         //    MAIN
@@ -24,7 +24,7 @@
 
         (async function main() {            
             const isLoggedIn = await qlikLogin();
-            renderSingleIframe('qlik_frame', APPID, SHEETID, theme);
+            renderSingleIframe('qlik_frame', APPID, SHEETID);
         })();
 
         //    LOGIN
@@ -98,7 +98,7 @@
 
 
          //    HELPER FUNCTION TO GENERATE IFRAME
-         function renderSingleIframe(frameId, appId, sheetId, theme) {
+         function renderSingleIframe(frameId, appId, sheetId) {
             const frameUrl = `https://${TENANT}/single/?appid=${appId}&sheet=${sheetId}&opt=ctxmenu,currsel`;
             document.getElementById(frameId).setAttribute('src', frameUrl);
         }

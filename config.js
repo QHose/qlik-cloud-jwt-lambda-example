@@ -1,8 +1,8 @@
   module.exports = {
   
     // app config 
-    qlikWebIntegrationId: 'OdLshfnflDBoAeq1-WsEvkfCDpt7UfNg',
-    tenantDomain: 'bies.eu.qlikcloud.com',
+    qlikWebIntegrationId: 'sjMKWkCfEaTrNzAoGcHYb1hKjKdsSun9',
+    tenantDomain: '2bj9wrrirrxfbef.eu.qlikcloud.com',
     appId: 'c8133385-b9bf-4b27-af62-1faf52db8f1a',
     sheetId: 'XkgjPf',
     
