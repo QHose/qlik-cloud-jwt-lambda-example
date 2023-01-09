@@ -15,7 +15,7 @@ An example web page using JSON web tokens to process authorization to a Qlik Clo
 - The site accepts the token and requests a session cookie from the Qlik Cloud tenant's JWT session endpoint.    
 - The user receives a cookie authorizing the site to render the iframe content from the Qlik Cloud tenant.
     - `renderSingleIframe in index.html`
-    - ` frameUrl = https://${TENANT}/single/?appid=${appId}&sheet=${sheetId}&opt=ctxmenu,currsel`
+    - `frameUrl = https://${TENANT}/single/?appid=${appId}&sheet=${sheetId}&opt=ctxmenu,currsel`
 
 Please refer to the [complete tutorial on qlik.dev](https://qlik.dev/tutorials/embed-content-using-iframes-and-anonymous-access).
 
@@ -26,7 +26,7 @@ check with [jwt.io](jwt.io), make sure you put in your private and public key, a
 ![image](https://user-images.githubusercontent.com/12411165/211025134-f46f77ad-46d3-451d-ba4c-8edb3f46216c.png)
 
 # run the code
-- update index.html, config with your credentials (use find replace)
+- update index.html, config.js with your credentials (use find replace)
 - go to project source directory and run `node server.js`
 
 
