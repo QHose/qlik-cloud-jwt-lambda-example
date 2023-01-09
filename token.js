@@ -32,7 +32,8 @@ const methods = {
     // console.log("🚀 ~ file: token.js:32 ~ key used to sign the JWT: ", key)
 
     const token = jsonWebToken.sign(payload, key, signingOptions);
-    // console.log("🚀 ~ file: token.js:34 ~ payload", payload)
+    console.log('token: ', token)
+    // console.log("🚀 ~ file: token.js:34 ~ payload", key)
     return token;
   }
   } 
