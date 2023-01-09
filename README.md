@@ -27,7 +27,9 @@ check with [jwt.io](jwt.io), make sure you put in your private and public key, a
 
 # run the code
 - update index.html, config.js with your credentials (use find replace)
-- go to project source directory and run `node server.js`
+- update your [qlik tenant web integration id](https://help.qlik.com/en-US/cloud-services/Subsystems/Hub/Content/Sense_Hub/Admin/mc-adminster-web-integrations.htm) to include `https://localhost:3000`
+- Publish an app in a space, make a note of the app id and the sheet id (view in browser url bar)
+- go to project source directory in powershell/cmd and run `npm install` and next  `node server.js`
 - open your browser and view https://localhost:3000/
 - use httptoolkit tool to view the network traffic
 

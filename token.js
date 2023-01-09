@@ -29,11 +29,9 @@ const methods = {
       email_verified: true,
       groups: groups
     };
-    // console.log("🚀 ~ file: token.js:32 ~ key used to sign the JWT: ", key)
 
     const token = jsonWebToken.sign(payload, key, signingOptions);
     console.log('token: ', token)
-    // console.log("🚀 ~ file: token.js:34 ~ payload", key)
     return token;
   }
   } 

@@ -2,6 +2,11 @@
 <body>
 
     <div id="main">
+        <h1>Main Page</h1>
+        This is the main page...
+        Below we try to open an IFRAME pointing to a sheet from an app running in Qlik Cloud.
+        <hr>
+        <h1>Qlik Cloud content</h1>
         <iframe id='qlik_frame' style='border:none;width:100%;height:900px;'></iframe>
     </div>
 
@@ -9,9 +14,9 @@
 
         //    CONFIGURATION
 
-        const TENANT = '2bj9wrrirrxfbef.eu.qlikcloud.com';
+        const TENANT = 'bies.eu.qlikcloud.com';
         const JWTENDPOINT = '/token';
-        const WEBINTEGRATIONID = 'sjMKWkCfEaTrNzAoGcHYb1hKjKdsSun9' //DbN1BlXAMCfX2MwVbsrzrFuK848gKXPm';
+        const WEBINTEGRATIONID = 'q53JKnG6HxRKeSeDdUK88_pDo5mmGUQC' //DbN1BlXAMCfX2MwVbsrzrFuK848gKXPm';
         const APPID = 'c8133385-b9bf-4b27-af62-1faf52db8f1a'
         const SHEETID = 'XkgjPf';
         //    MAIN
@@ -78,120 +83,14 @@
                     'qlik-web-integration-id': WEBINTEGRATIONID
                 },
             })
-        }
-
-        async function getQCSHeaders() {
-            const response = await fetch(`https://${TENANT}/api/v1/csrf-token`, {
-                mode: 'cors',
-                credentials: 'include',
-                headers: {
-                    'qlik-web-integration-id': WEBINTEGRATIONID
-                },
-            })
-
-            const csrfToken = new Map(response.headers).get('qlik-csrf-token');
-            return {
-                'qlik-web-integration-id': WEBINTEGRATIONID,
-                'qlik-csrf-token': csrfToken,
-            };
-        }
-
+        }      
 
          //    HELPER FUNCTION TO GENERATE IFRAME
          function renderSingleIframe(frameId, appId, sheetId) {
             const frameUrl = `https://${TENANT}/single/?appid=${appId}&sheet=${sheetId}&opt=ctxmenu,currsel`;
             document.getElementById(frameId).setAttribute('src', frameUrl);
         }
-
-
-
-
-
-
-        // //    ENIGMA ENGINE CONNECTION
-
-        // async function connectEnigma(qcsHeaders, appId) {
-        //     const [session, app] = await getEnigmaSessionAndApp(qcsHeaders, appId);
-        //     return [session, app];
-        // }
-
-        // async function getEnigmaSessionAndApp(headers, appId) {
-        //     const params = Object.keys(headers)
-        //         .map((key) => `${key}=${headers[key]}`)
-        //         .join('&');
-
-        //     return (async () => {
-        //         const schema = await (await fetch('https://unpkg.com/enigma.js@2.7.0/schemas/12.612.0.json')).json();
-
-        //         try {
-        //             return await createEnigmaAppSession(schema, appId, params);
-        //         }
-        //         catch {
-        //             // If the socket is closed immediately following the connection this
-        //             // could be due to an edge-case race condition where the newly created
-        //             // user does not yet have access to the app due to access control propagation.
-        //             // This bit of code will make another attempt after a 1.5 seconds.
-        //             const waitSecond = await new Promise(resolve => setTimeout(resolve, 1500));
-        //             try {
-        //                 return await createEnigmaAppSession(schema, appId, params);
-        //             }
-        //             catch (e) {
-        //                 throw new Error(e);
-        //             }
-        //         }
-        //     })();
-        // }
-
-        // async function createEnigmaAppSession(schema, appId, params) {
-        //     const session = enigma.create({
-        //         schema,
-        //         url: `wss://${TENANT}/app/${appId}?${params}`
-        //     });
-        //     const enigmaGlobal = await session.open();
-        //     const enigmaApp = await enigmaGlobal.openDoc(appId);
-        //     return [session, enigmaApp];
-        // }
-
-        // //    BONUS! DYNAMICALLY FETCH THEME
-
-        // async function getTheme(enigmaApp) {
-        //     const createAppProps = await enigmaApp.createSessionObject({
-        //         qInfo: {
-        //             qId: "AppPropsList",
-        //             qType: "AppPropsList"
-        //         },
-        //         qAppObjectListDef: {
-        //             qType: "appprops",
-        //             qData: {
-        //                 theme: "/theme"
-        //             }
-        //         }
-        //     });
-        //     const appProps = await enigmaApp.getObject('AppPropsList');
-        //     const appPropsLayout = await appProps.getLayout();
-        //     const theme = appPropsLayout.qAppObjectList.qItems[0].qData.theme;
-        //     return theme;
-        // }
-
-        // //    HANDLE ENGINE SESSION CLOSURE
-
-        // function handleDisconnect(session) {
-        //     session.on('closed', () => {
-        //         const message = 'Due to inactivity or loss of connection, this session has ended.';
-        //         console.log(message);
-        //     });
-
-        //     session.on('suspended', () => {
-        //         const message = 'Due to loss of connection, this session has been suspended.';
-        //         console.log(message);
-        //     });
-
-        //     window.addEventListener('offline', () => {
-        //         session.close();
-        //     });
-        // }
-
-       
+      
 
     </script>
 
