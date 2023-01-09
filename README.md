@@ -28,6 +28,8 @@ check with [jwt.io](jwt.io), make sure you put in your private and public key, a
 # run the code
 - update index.html, config.js with your credentials (use find replace)
 - go to project source directory and run `node server.js`
+- open your browser and view https://localhost:3000/
+- use httptoolkit tool to view the network traffic
 
 
 # issues
