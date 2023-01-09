@@ -25,6 +25,11 @@ check with [jwt.io](jwt.io), make sure you put in your private and public key, a
 
 ![image](https://user-images.githubusercontent.com/12411165/211025134-f46f77ad-46d3-451d-ba4c-8edb3f46216c.png)
 
+# run the code
+- update index.html, config with your credentials (use find replace)
+- go to project source directory and run `node server.js`
+
+
 # issues
 - if you get 'Origin has not been granted access' you need to copy your hostname in the [web integration id of Qlik Cloud](https://help.qlik.com/en-US/cloud-services/Subsystems/Hub/Content/Sense_Hub/Admin/mc-adminster-web-integrations.htm). 
 - unable to decode jwt: your certificates are not ok. (sometimes and issue with line breaks, see above for the resolution)
