@@ -7,10 +7,10 @@ const token = require("./token");
 const { v4: uuidv4 } = require("uuid");
 const generator = require("./selfSignedCerts");
 
-// app.use(express.static(__dirname));
+// app.use(express.static(__dirname)); //use if you need to load resources from some server directories
 
 
-// create certificates for testing 
+// create https vrowser certificates for testing 
 const cert = generator.generateCert({altNameIPs: ["127.0.0.1", "127.0.0.2"], validityDays: 2});
 
 

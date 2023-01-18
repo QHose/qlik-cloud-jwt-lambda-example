@@ -18,16 +18,28 @@ const methods = {
       audience: "qlik.api/login/jwt-session"
     };
 
-    // These are the claims that will be accepted and mapped anything else will be ignored. sub, subtype and name are mandatory.
     
+    
+    // The required claims for a Qlik JWT payload are the following:
+
+      // jti - (JWT ID) claim provides a unique identifier for the JWT.
+      // iat - The issued at date of the JWT provided as a numeric timestamp.
+      // sub - The main identifier (aka subject) of the user.
+      // subType - The type of identifier the sub represents. In this case, user is the only applicable value.
+      // name - The friendly name to apply to the user.
+      // email - The email address of the user.
+      // email_verified - A claim indicating to Qlik that the JWT source has verified that the email address belongs to the subject.
+      
+      // you will notice the payload below does not include all fields, that is because the jsonwebtoken library creates one for you including the singingoptions. Make sure the token on jwt.io looks properly.
+
     const payload = {
       jti: uuidv4().toString(),
-      sub: sub,
+      sub: sub, //load the groups from your local IdP if you want to use authenticated users instead of simulating anonymous access
       subType: "user",
       name: name,
       email: email,
       email_verified: true,
-      groups: groups
+      groups: groups //load the groups from your local IdP if you want to use authenticated users instead of simulating anonymous access
     };
 
     const token = jsonWebToken.sign(payload, key, signingOptions);
