@@ -52,4 +52,8 @@ if you want to login users from your SaaS platform instead you just need to modi
 
 ![image](https://user-images.githubusercontent.com/12411165/213195488-f287cce9-a6a6-4982-a29c-6d5d42021297.png)
 
+# Succesful flow result
 
+![image](https://user-images.githubusercontent.com/12411165/213196317-adda1917-0bb9-4d22-9bb1-3c38526cc4a7.png)
+
+so in the log you will first see a 401, the user does not have a cookie, so request a token, send it to the jwt-session endpoint using a POST, receive a cookie, and open the IFrame.
