@@ -22,7 +22,7 @@
         (async function main() {          
              await getConfig();
             const isLoggedIn = await qlikLogin();
-            renderSingleIframe('qlik_frame', APPID, SHEETID);
+            renderSingleIframe('qlik_frame', config.appId, config.sheetId);
         })();
 
 
@@ -42,7 +42,8 @@
             const loggedIn = await checkLoggedIn();
             if (loggedIn.status !== 200) {
                 const tokenRes = await (await getJWTToken(JWTENDPOINT)).json();
-                const loginRes = await jwtLogin(tokenRes.body);
+                const loginRes = await jwtLogin(tokenRes.token);
+                console.log("🚀 ~ file: index.html:46 ~ qlikLogin ~ login result status", loginRes)
                 if (loginRes.status != 200) {
                     const message = 'Something went wrong while logging in.';
                     alert(message);

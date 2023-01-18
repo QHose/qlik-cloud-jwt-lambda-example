@@ -15,7 +15,7 @@
     // sheetId: 'eAHHJTL',
     
     // generic token config
-    issuer: 'amazing-insights.eu.qlikcloud.com',
-    keyid: '4ff3a1e1-c74b-40c2-aa42-ed7cd2884456'
+    issuer: 'myIssuer',
+    keyid: 'myKeyId'
   };
   
