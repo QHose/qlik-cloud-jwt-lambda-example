@@ -26,6 +26,7 @@ check with [jwt.io](jwt.io), make sure you put in your private and public key, a
 ![image](https://user-images.githubusercontent.com/12411165/211025134-f46f77ad-46d3-451d-ba4c-8edb3f46216c.png)
 
 if you want to login users from your SaaS platform instead you just need to modify the code to get the actual users and his group membership and paste it here (`server.js`):
+
 ![image](https://user-images.githubusercontent.com/12411165/213189940-02177fe1-106f-4761-92aa-cf62ffd4f544.png)
 
 
