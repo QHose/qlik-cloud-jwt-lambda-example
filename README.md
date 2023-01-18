@@ -1,6 +1,6 @@
-# qlik-cloud-jwt-lambda-example
+# Embed Qlik Sense sheet with anonymous users
 
-An example web page using JSON web tokens to process authorization to a Qlik Cloud tenant using JWT to insert the user/group memberships.
+An example web page using JSON web tokens to process authorization to a Qlik Cloud tenant using JWT to insert the dummy user/group memberships to simulate anonymous users.Beaware that anonymous usages in currently not available in Qlik Cloud (as opposed to Client Managed where you could create an anon virtual proxy)
 
 # The authentication flow
 
@@ -37,6 +37,9 @@ check with [jwt.io](jwt.io), make sure you put in your private and public key, a
 # issues
 - if you get 'Origin has not been granted access' you need to copy your hostname in the [web integration id of Qlik Cloud](https://help.qlik.com/en-US/cloud-services/Subsystems/Hub/Content/Sense_Hub/Admin/mc-adminster-web-integrations.htm). 
 - unable to decode jwt: your certificates are not ok. (sometimes and issue with line breaks, see above for the resolution), or you need to update your signing package (jsonwebtoken). 
-- if you don't know how to create a certificate pair, go to [the integration provisioning demo](https://integration.qlik.com/?selection=WFamgeSCsaWk3B4ws), scroll down, and press the green button, "generate keys"
+- if you don't know how to create a certificate pair, go to [the integration provisioning demo](https://integration.qlik.com/?selection=WFamgeSCsaWk3B4ws), scroll down, and press the green button, "generate keys" ![image](https://user-images.githubusercontent.com/12411165/213187436-f5eaa69c-586b-4714-9d49-479bab1b2c54.png)
+
 - on the next slide you can also try to login to your tenant first, before you do the "more difficult stuff". Make sure you make a web integration id (whitelist: https://integrationdemo1.qlik.com)
 - if the IFrame loads Qlik content, but you get `No permission to open the app.` you need to set access rights for the space for the group or user. (beaware that you first have to login with an user and groups before you can assign them to a space.)
+![image](https://user-images.githubusercontent.com/12411165/213187239-4557c872-ce0c-4e03-b542-a6fb4a73b3a9.png)
+
