@@ -14,24 +14,28 @@
 
         //    CONFIGURATION
 
-        const TENANT = 'bies.eu.qlikcloud.com';
+        var config = {};
         const JWTENDPOINT = '/token';
-        const WEBINTEGRATIONID = 'q53JKnG6HxRKeSeDdUK88_pDo5mmGUQC' //DbN1BlXAMCfX2MwVbsrzrFuK848gKXPm';
-        const APPID = 'c8133385-b9bf-4b27-af62-1faf52db8f1a'
-        const SHEETID = 'XkgjPf';
-        //    MAIN
+        
+        // //    MAIN      
 
-        // try {
-        //     const { tenantDomain, qlikWebIntegrationId, appId, objId, currentLoginType, loginTypes } = await fetch("config").then((resp) => resp.json());
-        // } catch (error) {
-        //     console.error(error);
-        // }
-
-        (async function main() {            
+        (async function main() {          
+             await getConfig();
             const isLoggedIn = await qlikLogin();
             renderSingleIframe('qlik_frame', APPID, SHEETID);
         })();
 
+
+        // GET CONFIG FROM SERVER
+        async function getConfig(){        
+         try {
+            config = await fetch("config").then((resp) => resp.json());
+            console.log(config);
+        } catch (error) {
+            console.error(error);
+        }
+        }
+        
         //    LOGIN
 
         async function qlikLogin() {
@@ -56,38 +60,38 @@
         }
 
         async function checkLoggedIn() {
-            return await fetch(`https://${TENANT}/api/v1/users/me`, {
+            return await fetch(`https://${config.tenantDomain}/api/v1/users/me`, {
                 mode: 'cors',
                 credentials: 'include',
                 headers: {
-                    'qlik-web-integration-id': WEBINTEGRATIONID
+                    'qlik-web-integration-id': config.qlikWebIntegrationId
                 },
             })
         }
 
         async function getJWTToken(jwtEndpoint) {
             return await fetch(jwtEndpoint, {
-                // mode: 'cors',
+                mode: 'cors',
                 method: 'GET'
             })
         }
 
         async function jwtLogin(token) {
             const authHeader = `Bearer ${token}`;
-            return await fetch(`https://${TENANT}/login/jwt-session?qlik-web-integration-id=${WEBINTEGRATIONID}`, {
+            return await fetch(`https://${config.tenantDomain}/login/jwt-session?qlik-web-integration-id=${config.qlikWebIntegrationId}`, {
                 credentials: 'include',
                 mode: 'cors',
                 method: 'POST',
                 headers: {
                     'Authorization': authHeader,
-                    'qlik-web-integration-id': WEBINTEGRATIONID
+                    'qlik-web-integration-id': config.qlikWebIntegrationId
                 },
             })
         }      
 
          //    HELPER FUNCTION TO GENERATE IFRAME
          function renderSingleIframe(frameId, appId, sheetId) {
-            const frameUrl = `https://${TENANT}/single/?appid=${appId}&sheet=${sheetId}&opt=ctxmenu,currsel`;
+            const frameUrl = `https://${config.tenantDomain}/single/?appid=${config.appId}&sheet=${config.sheetId}&opt=ctxmenu,currsel`;
             document.getElementById(frameId).setAttribute('src', frameUrl);
         }
       

@@ -36,6 +36,6 @@ check with [jwt.io](jwt.io), make sure you put in your private and public key, a
 
 # issues
 - if you get 'Origin has not been granted access' you need to copy your hostname in the [web integration id of Qlik Cloud](https://help.qlik.com/en-US/cloud-services/Subsystems/Hub/Content/Sense_Hub/Admin/mc-adminster-web-integrations.htm). 
-- unable to decode jwt: your certificates are not ok. (sometimes and issue with line breaks, see above for the resolution)
+- unable to decode jwt: your certificates are not ok. (sometimes and issue with line breaks, see above for the resolution), or you need to update your signing package (jsonwebtoken). 
 - if you don't know how to create a certificate pair, go to [the integration provisioning demo](https://integration.qlik.com/?selection=WFamgeSCsaWk3B4ws), scroll down, and press the green button, "generate keys"
 - on the next slide you can also try to login to your tenant first, before you do the "more difficult stuff". Make sure you make a web integration id (whitelist: https://integrationdemo1.qlik.com)

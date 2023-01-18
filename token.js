@@ -31,7 +31,9 @@ const methods = {
     };
 
     const token = jsonWebToken.sign(payload, key, signingOptions);
-    console.log('token: ', token)
+    console.log("token.js sign jwt: signingOptions", signingOptions)
+    console.log("token.js sign jwt: payload", payload)
+    console.log('token.js sign jwt: token: ', token)
     return token;
   }
   } 
