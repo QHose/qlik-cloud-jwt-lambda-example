@@ -50,3 +50,6 @@ if you want to login users from your SaaS platform instead you just need to modi
 - if the IFrame loads Qlik content, but you get `No permission to open the app.` you need to set access rights for the space for the group or user. (beaware that you first have to login with an user and groups before you can assign them to a space.)
 ![image](https://user-images.githubusercontent.com/12411165/213187239-4557c872-ce0c-4e03-b542-a6fb4a73b3a9.png)
 
+![image](https://user-images.githubusercontent.com/12411165/213195488-f287cce9-a6a6-4982-a29c-6d5d42021297.png)
+
+
