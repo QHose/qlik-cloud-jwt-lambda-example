@@ -1,4 +1,4 @@
-# Embed Qlik Sense sheet with anonymous users
+# Embed Qlik Sense sheet with anonymous users using a JWT created locally (server side of your web server)
 
 An example web page using JSON web tokens to process authorization to a Qlik Cloud tenant using JWT to insert the dummy user/group memberships to simulate anonymous users.Beaware that anonymous usages in currently not available in Qlik Cloud (as opposed to Client Managed where you could create an anon virtual proxy)
 
