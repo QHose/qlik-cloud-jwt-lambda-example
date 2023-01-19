@@ -4,7 +4,7 @@
     <div id="main">
         <h1>Main Page</h1>
         This is the main page...
-        Below we try to open an IFRAME pointing to a sheet from an app running in Qlik Cloud.
+        Below we try to open an IFRAME pointing to a sheet from an app running in Qlik Cloud. Open your browser console to see details.
         <hr>
         <h1>Qlik Cloud content</h1>
         <iframe id='qlik_frame' style='border:none;width:100%;height:900px;'></iframe>
@@ -55,8 +55,9 @@
                     alert(message);
                     throw new Error(message);
                 }
+                console.log('Logged in!', loginRes);
             }
-            console.log('Logged in!');
+            
             return true;
         }
 

@@ -57,3 +57,20 @@ if you want to login users from your SaaS platform instead you just need to modi
 ![image](https://user-images.githubusercontent.com/12411165/213196317-adda1917-0bb9-4d22-9bb1-3c38526cc4a7.png)
 
 so in the log you will first see a 401, the user does not have a cookie, so request a token, send it to the jwt-session endpoint using a POST, receive a cookie, and open the IFrame.
+
+
+# Automatic configuration of the tenant
+
+Code parts below taken from [qlik.dev](https://qlik.dev/tutorials/configure-a-tenant)
+
+If you like this tool can automatically
+- Enable auto creation of groups if the user logs in (you need this because you first have to login with the user and his groups, before you can assign a group to a space)
+- Set user entitlement assignment behavior
+- Configure an identity provider
+- Configure authorization using JSON web tokens
+- Add groups to the tenant
+
+## Create spaces in a tenant
+- Create the managed space
+- Add a group to a managed space with the consumer role
+- Add a group and assign it a role on the managed space

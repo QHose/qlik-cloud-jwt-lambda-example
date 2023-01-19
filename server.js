@@ -6,6 +6,7 @@ const config = require("./config");
 const token = require("./token");
 const { v4: uuidv4 } = require("uuid");
 const generator = require("./selfSignedCerts");
+const configureTenant = require("./configureTenant").configureTenant;
 
 // app.use(express.static(__dirname)); //use if you need to load resources from some server directories
 
@@ -46,17 +47,30 @@ app.get("/config", (req, res) => {
 app.get("/token", (req, res) => {
   const uuid = uuidv4();
   const sub = `sub_${uuid}`;
-  const name = sub;
+  const name = 'Anonymous user'
   const email = `${uuid}@anonymoususer.anon`;
   const groups = ['anonymous'];
   
   const genT = token.generate(sub, name, email, groups);
-  
-
   res.json({ token: genT });
+});
+
+
+
+app.get("/setup", async (req, res) => {
+  console.log('server request to setup Qlik Sense SaaS...')
+  await configureTenant();
+  res.send('This tool is now setting up Qlik Sense Cloud -'+config.tenantDomain+'- with a JWT IdP')
 
 });
 
+// app.get("/setup"), (req,res) => {
+//   console.log('server request to setup Qlik Sense SaaS...')
+//   // await configureTenant();
+//   res.send('This tool is now setting up Qlik Sense Cloud with a JWT endpo')
+//   res.end();
+
+// }
 
 
 
