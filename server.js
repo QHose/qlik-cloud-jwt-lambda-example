@@ -64,16 +64,6 @@ app.get("/setup", async (req, res) => {
 
 });
 
-// app.get("/setup"), (req,res) => {
-//   console.log('server request to setup Qlik Sense SaaS...')
-//   // await configureTenant();
-//   res.send('This tool is now setting up Qlik Sense Cloud with a JWT endpo')
-//   res.end();
-
-// }
-
-
-
 
 
 
