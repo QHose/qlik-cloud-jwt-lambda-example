@@ -74,3 +74,13 @@ If you like this tool can automatically
 - Create the managed space
 - Add a group to a managed space with the consumer role
 - Add a group and assign it a role on the managed space
+
+
+# Create OAuth client 
+
+* go to `https://account.myqlik.qlik.com/account`
+* Create Oauth client ![image](https://user-images.githubusercontent.com/12411165/213698119-e396da53-908a-4529-80d4-f152648a0943.png)
+* Copy and save the values in the project root .env file ![image](https://user-images.githubusercontent.com/12411165/213698370-7187ee47-44af-4023-b3b9-d21ead85e969.png)
+![Uploading image.png…]()
+
+
