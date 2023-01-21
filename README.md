@@ -76,11 +76,17 @@ If you like this tool can automatically
 - Add a group and assign it a role on the managed space
 
 
-# Create OAuth client 
+# Create OAuth client (DOES NOT WORK)
 
 * go to `https://account.myqlik.qlik.com/account`
 * Create Oauth client ![image](https://user-images.githubusercontent.com/12411165/213698119-e396da53-908a-4529-80d4-f152648a0943.png)
 * Copy and save the values in the project root .env file ![image](https://user-images.githubusercontent.com/12411165/213698370-7187ee47-44af-4023-b3b9-d21ead85e969.png)
 ![Uploading image.png…]()
+
+
+# Create tenant specific OAUTH client
+
+* Follow the [steps](https://help.qlik.com/en-US/cloud-services/Subsystems/Hub/Content/Sense_Hub/Admin/mc-create-oauth-client.htm) to create a `web` OAUTH client, select the option `Allow Machine-to-Machine (M2M)`. Skip step 6: Leave the redirect fields empty. Click Copy to clipboard to save the client ID and client secret for later use. Store the client secret in a secure location. Click Done.
+* next you have to edit your new OAUTH client, and set the `consent method` to `trusted`. You have two options for consent: Required and Trusted. 
 
 

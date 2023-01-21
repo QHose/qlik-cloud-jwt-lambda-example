@@ -1,0 +1,6 @@
+POST https://bies.eu.qlikcloud.com/oauth/token
+Accept: application/json
+Content-Type: application/json
+
+{"client_id":"0c9f1b899a26239392c6d29eec0462ee", "client_secret":"09dcdea9818f7ea8d7426ebbbec5d88b1e33b30bad965b8a6aadb434d5cefab2", "grant_type":"client_credentials"}
+
