@@ -62,7 +62,7 @@ so in the log you will first see a 401, the user does not have a cookie, so requ
 
 # Automatic configuration of the tenant
 
-Code parts below taken from [qlik.dev](https://qlik.dev/tutorials/configure-a-tenant)
+Code parts below taken from [qlik.dev](https://qlik.dev/tutorials/configure-a-tenant). After you started your server with `node server.js` go to `https://localhost:3000/setup` this will trigger the API calls to connect to your tenant specified in the `.env` file.
 
 If you like this tool can automatically
 - Enable auto creation of groups if the user logs in (you need this because you first have to login with the user and his groups, before you can assign a group to a space)
