@@ -38,7 +38,7 @@ if you want to login users from your SaaS platform instead you just need to modi
 - Publish an app in a space, make a note of the app id and the sheet id (view in browser url bar)
 - go to project source directory in powershell/cmd and run `npm install` and next  `node server.js`
 - open your browser and view https://localhost:3000/
-- use httptoolkit tool to view the network traffic
+- use [httptoolkit](https://httptoolkit.com/) tool to view the network traffic
 
 
 # issues
