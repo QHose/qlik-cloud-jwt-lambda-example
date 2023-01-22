@@ -34,7 +34,6 @@ if you want to login users from your SaaS platform instead you just need to modi
 
 # run the code
 - update the .env file in the project root directory with your credentials (use find replace)
-- open console in the project root, and run `npm install` 
 - update your [qlik tenant web integration id](https://help.qlik.com/en-US/cloud-services/Subsystems/Hub/Content/Sense_Hub/Admin/mc-adminster-web-integrations.htm) to include `https://localhost:3000`
 - Publish an app in a space, make a note of the app id and the sheet id (view in browser url bar)
 - go to project source directory in powershell/cmd and run `npm install` and next  `node server.js`
