@@ -1,4 +1,5 @@
 const express = require("express");
+const axios = require('axios');
 const https = require("https");
 const app = express();
 const fs = require("fs");
@@ -65,5 +66,17 @@ app.get("/setup", async (req, res) => {
 });
 
 
+const agent = new https.Agent({  
+  rejectUnauthorized: false
+});
 
+async function setup() {
+  try {
+    const response = await axios.get('https://localhost:3000/setup', { httpsAgent: agent });
+    console.log(response.data);
+  } catch (err) {
+    console.error(err);
+  }
+}
 
+setup();
