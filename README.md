@@ -10,8 +10,7 @@ This software can
 * Wetup your "empty" SaaS tenant by inserting some groups and creating an Idp 
 
 # Run the code
-- update the .env file in the project root directory with your credentials. (If it isn't there it will be created for you the first time you run the server.)
-- ![image](https://user-images.githubusercontent.com/12411165/214322813-81d1a544-98d8-433f-80f5-5d7b3092e4b4.png)
+- update the .env file in the project root directory with your credentials. (If it isn't there it will be created for you the first time you run the server. Next you can edit it.) ![image](https://user-images.githubusercontent.com/12411165/214322813-81d1a544-98d8-433f-80f5-5d7b3092e4b4.png)
 
 - update your [qlik tenant web integration id](https://help.qlik.com/en-US/cloud-services/Subsystems/Hub/Content/Sense_Hub/Admin/mc-adminster-web-integrations.htm) to include `https://localhost:3000`
 - Publish an app in a space, make a note of the app id and the sheet id (view in browser url bar) and insert into the `.env` file.
