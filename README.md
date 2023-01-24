@@ -31,6 +31,10 @@ If you like this tool can automatically
 - Configure authorization using JSON web tokens
 - Add groups to the tenant
 
+The output of the tool in the console will look like this: 
+![image](https://user-images.githubusercontent.com/12411165/214327802-0ffe220c-05d1-4fe4-9ab0-b6dfc8b83b55.png)
+
+
 ## Create spaces in a tenant (To Do - not yet built)
 - Create the managed space
 - Add a group to a managed space with the consumer role
