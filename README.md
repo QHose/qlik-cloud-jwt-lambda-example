@@ -7,7 +7,7 @@ An example web page using JSON web tokens to process authorization to a Qlik Clo
 # Introduction of use cases
 This software can
 * present you a simple HTML page in which a sheet is embedded from a SaaS tenant you configured in the `.env` file.
-* Wetup your "empty" SaaS tenant by inserting some groups and creating an Idp 
+* Setup your "empty" SaaS tenant by inserting some groups and creating an Idp.  
 
 # Run the code
 - update the .env file in the project root directory with your credentials. (If it isn't there it will be created for you the first time you run the server. Next you can edit it.) ![image](https://user-images.githubusercontent.com/12411165/214322813-81d1a544-98d8-433f-80f5-5d7b3092e4b4.png)
