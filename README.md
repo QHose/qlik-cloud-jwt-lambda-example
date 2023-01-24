@@ -17,7 +17,7 @@ This software can
 - Only needed if you did not yet create an IdP and already have groups in your system: Create an Oauth client (see below)
 - go to project source directory in powershell/cmd and run `npm install` and next  `node server.js`
 - Open your browser and view https://localhost:3000/
-- use [httptoolkit](https://httptoolkit.com/) tool to view the network traffic
+- Tip: use [httptoolkit](https://httptoolkit.com/) tool to view the network traffic
 
 
 # Create tenant specific OAUTH client
