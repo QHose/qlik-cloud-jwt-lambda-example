@@ -6,10 +6,10 @@ An example web page using JSON web tokens to process authorization to a Qlik Clo
 
 # Introduction of use cases
 This software can
-* present you a simple HTML page in which a sheet is embedded from a SaaS tenant you configured in the `.env` file.
-* Setup your "empty" SaaS tenant by inserting some groups and creating an Idp.  
+* demo1: Present you a simple HTML page in which a sheet is embedded from a SaaS tenant you configured in the `.env` file.
+* demo2: Setup your "empty" SaaS tenant by inserting some groups and creating an Idp.
 
-# Run the code
+# Run the code demo 1
 - update the .env file in the project root directory with your credentials. (If it isn't there it will be created for you the first time you run the server. Next you can edit it.) ![image](https://user-images.githubusercontent.com/12411165/214322813-81d1a544-98d8-433f-80f5-5d7b3092e4b4.png)
 
 - update your [qlik tenant web integration id](https://help.qlik.com/en-US/cloud-services/Subsystems/Hub/Content/Sense_Hub/Admin/mc-adminster-web-integrations.htm) to include `https://localhost:3000`
@@ -19,7 +19,22 @@ This software can
 - Open your browser and view https://localhost:3000/
 - Tip: use [httptoolkit](https://httptoolkit.com/) tool to view the network traffic
 
+# Run the code for demo2
+> Run this code if you want your tenant to be automically setup to work with JWT for this demo.
 
+Code parts below taken from [qlik.dev](https://qlik.dev/tutorials/configure-a-tenant). After you started your server with `node server.js` go to `https://localhost:3000/setup` this will trigger the API calls to connect to your tenant specified in the `.env` file.
+
+If you like this tool can automatically
+- Enable auto creation of groups if the user logs in (you need this because you first have to login with the user and his groups, before you can assign a group to a space)
+- Set user entitlement assignment behavior (analyser, professional...)
+- Configure an identity provider
+- Configure authorization using JSON web tokens
+- Add groups to the tenant
+
+## Create spaces in a tenant (To Do - not yet built)
+- Create the managed space
+- Add a group to a managed space with the consumer role
+- Add a group and assign it a role on the managed space
 # Create tenant specific OAUTH client
 
 * Follow the [steps](https://help.qlik.com/en-US/cloud-services/Subsystems/Hub/Content/Sense_Hub/Admin/mc-create-oauth-client.htm) to create a `web` OAUTH client, select the option `Allow Machine-to-Machine (M2M)`. Skip step 6: Leave the redirect fields empty. Click Copy to clipboard to save the client ID and client secret for later use. Store the client secret in a secure location. Click Done.
@@ -73,24 +88,6 @@ if you want to login users from your SaaS platform instead you just need to modi
 ![image](https://user-images.githubusercontent.com/12411165/213196317-adda1917-0bb9-4d22-9bb1-3c38526cc4a7.png)
 
 so in the log you will first see a 401, the user does not have a cookie, so request a token, send it to the jwt-session endpoint using a POST, receive a cookie, and open the IFrame.
-
-
-# Automatic configuration of the tenant
-
-Code parts below taken from [qlik.dev](https://qlik.dev/tutorials/configure-a-tenant). After you started your server with `node server.js` go to `https://localhost:3000/setup` this will trigger the API calls to connect to your tenant specified in the `.env` file.
-
-If you like this tool can automatically
-- Enable auto creation of groups if the user logs in (you need this because you first have to login with the user and his groups, before you can assign a group to a space)
-- Set user entitlement assignment behavior (analyser, professional...)
-- Configure an identity provider
-- Configure authorization using JSON web tokens
-- Add groups to the tenant
-
-## Create spaces in a tenant (To Do - not yet built)
-- Create the managed space
-- Add a group to a managed space with the consumer role
-- Add a group and assign it a role on the managed space
-
 
 # Create OAuth client via MyQlik
 
