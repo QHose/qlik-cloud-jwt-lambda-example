@@ -26,7 +26,7 @@ This software can
 * next you have to edit your new OAUTH client, and set the `consent method` to `trusted`. You have two options for consent: Required and Trusted. 
 
 
-# The authentication flow in the source code
+# The authentication flow in the source code for demo1
 
 - The anonymous user accesses the site with the embedded content from the Qlik Cloud tenant. 
     - (`server.js` - `app.get("/")`
