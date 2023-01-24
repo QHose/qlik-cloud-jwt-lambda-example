@@ -86,6 +86,7 @@ If you like this tool can automatically
 - Add groups to the tenant
 
 ## Create spaces in a tenant (To Do - not yet built)
+## Create spaces in a tenant (To Do - not yet built)
 - Create the managed space
 - Add a group to a managed space with the consumer role
 - Add a group and assign it a role on the managed space
