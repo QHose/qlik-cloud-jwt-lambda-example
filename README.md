@@ -33,12 +33,12 @@ if you want to login users from your SaaS platform instead you just need to modi
 
 
 # run the code
-- update index.html, config.js with your credentials (use find replace)
+- update the .env file in the project root directory with your credentials (use find replace)
 - update your [qlik tenant web integration id](https://help.qlik.com/en-US/cloud-services/Subsystems/Hub/Content/Sense_Hub/Admin/mc-adminster-web-integrations.htm) to include `https://localhost:3000`
 - Publish an app in a space, make a note of the app id and the sheet id (view in browser url bar)
 - go to project source directory in powershell/cmd and run `npm install` and next  `node server.js`
 - open your browser and view https://localhost:3000/
-- use httptoolkit tool to view the network traffic
+- use [httptoolkit](https://httptoolkit.com/) tool to view the network traffic
 
 
 # issues
@@ -61,7 +61,7 @@ so in the log you will first see a 401, the user does not have a cookie, so requ
 
 # Automatic configuration of the tenant
 
-Code parts below taken from [qlik.dev](https://qlik.dev/tutorials/configure-a-tenant)
+Code parts below taken from [qlik.dev](https://qlik.dev/tutorials/configure-a-tenant). After you started your server with `node server.js` go to `https://localhost:3000/setup` this will trigger the API calls to connect to your tenant specified in the `.env` file.
 
 If you like this tool can automatically
 - Enable auto creation of groups if the user logs in (you need this because you first have to login with the user and his groups, before you can assign a group to a space)
