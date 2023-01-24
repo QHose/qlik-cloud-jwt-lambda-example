@@ -130,7 +130,7 @@ async function createIdP() {
       options: {
         staticKeys: [
           {
-            pem: fs.readFileSync("./public.key", "utf8"),
+            pem: fs.readFileSync("./public.pem", "utf8"),
             kid: config.keyid,
           },
         ],

@@ -2,9 +2,6 @@ const jsonWebToken = require("jsonwebtoken");
 const fs = require("fs");
 const config = require("./config");
 const { v4: uuidv4 } = require("uuid");
-
-const key = fs.readFileSync("./privatekey.pem", "utf8");
-
 const methods = {
   generate: function (sub, name, email, groups = []) {
     // kid and issuer have to match with the IDP config and the audience has to be qlik.api/jwt-login-session
@@ -50,6 +47,7 @@ const methods = {
       groups: groups //load the groups from your local IdP if you want to use authenticated users instead of simulating anonymous access
     };
 
+    const key = fs.readFileSync("./private.pem", "utf8");
     const token = jsonWebToken.sign(payload, key, signingOptions);
     console.log("token.js sign jwt: signingOptions", signingOptions)
     console.log("token.js sign jwt: payload", payload)
