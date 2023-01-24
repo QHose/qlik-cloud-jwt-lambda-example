@@ -1,8 +1,31 @@
-# Embed Qlik Sense sheet with anonymous users using a JWT created locally (server side of your web server)
+# Embed Qlik Sense Cloud sheet with anonymous/local user using JWT 
 
-An example web page using JSON web tokens to process authorization to a Qlik Cloud tenant using JWT to insert the dummy user/group memberships to simulate anonymous users.Beaware that anonymous usages in currently not available in Qlik Cloud (as opposed to Client Managed where you could create an anon virtual proxy)
+An example web page using JSON web tokens to process authorization to a Qlik Cloud tenant using JWT to insert the (dummy) user/group memberships to simulate anonymous users. Beaware that anonymous usages in currently not available in Qlik Cloud (as opposed to Client Managed where you could create an anon virtual proxy). 
 
-# The authentication flow
+>You can also connect to your own identity software, and just get the userID and group memberships and inject it into the JWT token. 
+
+# Introduction of use cases
+This software can
+* present you a simple HTML page in which a sheet is embedded from a SaaS tenant you configured in the `.env` file.
+*   setup your "empty" SaaS tenant by inserting some groups and creating an Idp 
+
+# Run the code
+- update the .env file in the project root directory with your credentials 
+- update your [qlik tenant web integration id](https://help.qlik.com/en-US/cloud-services/Subsystems/Hub/Content/Sense_Hub/Admin/mc-adminster-web-integrations.htm) to include `https://localhost:3000`
+- Publish an app in a space, make a note of the app id and the sheet id (view in browser url bar) and insert into the `.env` file.
+- Only needed if you did not yet create an IdP and already have groups in your system: Create an Oauth client (see below)
+- go to project source directory in powershell/cmd and run `npm install` and next  `node server.js`
+- open your browser and view https://localhost:3000/
+- use [httptoolkit](https://httptoolkit.com/) tool to view the network traffic
+
+
+# Create tenant specific OAUTH client
+
+* Follow the [steps](https://help.qlik.com/en-US/cloud-services/Subsystems/Hub/Content/Sense_Hub/Admin/mc-create-oauth-client.htm) to create a `web` OAUTH client, select the option `Allow Machine-to-Machine (M2M)`. Skip step 6: Leave the redirect fields empty. Click Copy to clipboard to save the client ID and client secret for later use. Store the client secret in a secure location. Click Done.
+* next you have to edit your new OAUTH client, and set the `consent method` to `trusted`. You have two options for consent: Required and Trusted. 
+
+
+# The authentication flow in the source code
 
 - The anonymous user accesses the site with the embedded content from the Qlik Cloud tenant. 
     - (`server.js` - `app.get("/")`
@@ -32,14 +55,6 @@ if you want to login users from your SaaS platform instead you just need to modi
 
 
 
-# run the code
-- update the .env file in the project root directory with your credentials (use find replace)
-- update your [qlik tenant web integration id](https://help.qlik.com/en-US/cloud-services/Subsystems/Hub/Content/Sense_Hub/Admin/mc-adminster-web-integrations.htm) to include `https://localhost:3000`
-- Publish an app in a space, make a note of the app id and the sheet id (view in browser url bar)
-- go to project source directory in powershell/cmd and run `npm install` and next  `node server.js`
-- open your browser and view https://localhost:3000/
-- use [httptoolkit](https://httptoolkit.com/) tool to view the network traffic
-
 
 # issues
 - if you get 'Origin has not been granted access' you need to copy your hostname in the [web integration id of Qlik Cloud](https://help.qlik.com/en-US/cloud-services/Subsystems/Hub/Content/Sense_Hub/Admin/mc-adminster-web-integrations.htm). 
@@ -65,28 +80,22 @@ Code parts below taken from [qlik.dev](https://qlik.dev/tutorials/configure-a-te
 
 If you like this tool can automatically
 - Enable auto creation of groups if the user logs in (you need this because you first have to login with the user and his groups, before you can assign a group to a space)
-- Set user entitlement assignment behavior
+- Set user entitlement assignment behavior (analyser, professional...)
 - Configure an identity provider
 - Configure authorization using JSON web tokens
 - Add groups to the tenant
 
-## Create spaces in a tenant
+## Create spaces in a tenant (To Do - not yet built)
 - Create the managed space
 - Add a group to a managed space with the consumer role
 - Add a group and assign it a role on the managed space
 
 
-# Create OAuth client (DOES NOT WORK)
+# Create OAuth client via MyQlik
 
 * go to `https://account.myqlik.qlik.com/account`
 * Create Oauth client ![image](https://user-images.githubusercontent.com/12411165/213698119-e396da53-908a-4529-80d4-f152648a0943.png)
 * Copy and save the values in the project root .env file ![image](https://user-images.githubusercontent.com/12411165/213698370-7187ee47-44af-4023-b3b9-d21ead85e969.png)
 ![Uploading image.png…]()
-
-
-# Create tenant specific OAUTH client
-
-* Follow the [steps](https://help.qlik.com/en-US/cloud-services/Subsystems/Hub/Content/Sense_Hub/Admin/mc-create-oauth-client.htm) to create a `web` OAUTH client, select the option `Allow Machine-to-Machine (M2M)`. Skip step 6: Leave the redirect fields empty. Click Copy to clipboard to save the client ID and client secret for later use. Store the client secret in a secure location. Click Done.
-* next you have to edit your new OAUTH client, and set the `consent method` to `trusted`. You have two options for consent: Required and Trusted. 
 
 
