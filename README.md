@@ -1,6 +1,8 @@
-# Embed Qlik Sense sheet with anonymous users using a JWT created locally (server side of your web server)
+# Embed Qlik Sense sheet with anonymous/local user using JWT 
 
-An example web page using JSON web tokens to process authorization to a Qlik Cloud tenant using JWT to insert the dummy user/group memberships to simulate anonymous users.Beaware that anonymous usages in currently not available in Qlik Cloud (as opposed to Client Managed where you could create an anon virtual proxy)
+An example web page using JSON web tokens to process authorization to a Qlik Cloud tenant using JWT to insert the dummy user/group memberships to simulate anonymous users.Beaware that anonymous usages in currently not available in Qlik Cloud (as opposed to Client Managed where you could create an anon virtual proxy). You can also connect to your own identity software, and just get the userID and group memberships and inject it into the JWT token. 
+
+
 
 # The authentication flow
 
@@ -41,6 +43,13 @@ if you want to login users from your SaaS platform instead you just need to modi
 - use [httptoolkit](https://httptoolkit.com/) tool to view the network traffic
 
 
+# Create tenant specific OAUTH client
+
+* Follow the [steps](https://help.qlik.com/en-US/cloud-services/Subsystems/Hub/Content/Sense_Hub/Admin/mc-create-oauth-client.htm) to create a `web` OAUTH client, select the option `Allow Machine-to-Machine (M2M)`. Skip step 6: Leave the redirect fields empty. Click Copy to clipboard to save the client ID and client secret for later use. Store the client secret in a secure location. Click Done.
+* next you have to edit your new OAUTH client, and set the `consent method` to `trusted`. You have two options for consent: Required and Trusted. 
+
+
+
 # issues
 - if you get 'Origin has not been granted access' you need to copy your hostname in the [web integration id of Qlik Cloud](https://help.qlik.com/en-US/cloud-services/Subsystems/Hub/Content/Sense_Hub/Admin/mc-adminster-web-integrations.htm). 
 - unable to decode jwt: your certificates are not ok. (sometimes and issue with line breaks, see above for the resolution), or you need to update your signing package (jsonwebtoken). 
@@ -70,7 +79,7 @@ If you like this tool can automatically
 - Configure authorization using JSON web tokens
 - Add groups to the tenant
 
-## Create spaces in a tenant
+## Create spaces in a tenant (To Do - not yet built)
 - Create the managed space
 - Add a group to a managed space with the consumer role
 - Add a group and assign it a role on the managed space
@@ -82,11 +91,5 @@ If you like this tool can automatically
 * Create Oauth client ![image](https://user-images.githubusercontent.com/12411165/213698119-e396da53-908a-4529-80d4-f152648a0943.png)
 * Copy and save the values in the project root .env file ![image](https://user-images.githubusercontent.com/12411165/213698370-7187ee47-44af-4023-b3b9-d21ead85e969.png)
 ![Uploading image.png…]()
-
-
-# Create tenant specific OAUTH client
-
-* Follow the [steps](https://help.qlik.com/en-US/cloud-services/Subsystems/Hub/Content/Sense_Hub/Admin/mc-create-oauth-client.htm) to create a `web` OAUTH client, select the option `Allow Machine-to-Machine (M2M)`. Skip step 6: Leave the redirect fields empty. Click Copy to clipboard to save the client ID and client secret for later use. Store the client secret in a secure location. Click Done.
-* next you have to edit your new OAUTH client, and set the `consent method` to `trusted`. You have two options for consent: Required and Trusted. 
 
 
