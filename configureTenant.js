@@ -7,6 +7,7 @@ const enigma = require("enigma.js");
 const schema = require("enigma.js/schemas/12.612.0");
 const WebSocket = require("ws");
 const token = require("./token");
+const dotenv = require("dotenv");
 
 // load local config file with all Qlik Sense settings
 
@@ -54,7 +55,6 @@ exports.configureTenant = async function () {
 
 //https://qlik.dev/tutorials/deploy-a-qlik-sense-application-to-a-tenant#2-deploy-the-application-to-the-shared-space
 async function import_app() {
-
   const filePath = "./Sales.qvf";
   const data = fs.readFileSync(filePath);
 
@@ -68,8 +68,7 @@ async function import_app() {
     headers: {
       Accept: "application/json",
       "Content-Type": "application/octet-stream",
-      Authorization:
-        "Bearer "+TARGET_ACCESS_TOKEN,
+      Authorization: "Bearer " + TARGET_ACCESS_TOKEN,
     },
     data: data,
   };
@@ -77,10 +76,31 @@ async function import_app() {
   try {
     const response = await axios(config);
     STAGED_APP_ID = response.data.attributes.id;
-    console.log(`🚀 App imported to ${SHARED_SPACE_NAME} and received id: `, STAGED_APP_ID)
+    updateEnvFile();
+    console.log(
+      `🚀 App imported to ${SHARED_SPACE_NAME} and received id: `,
+      STAGED_APP_ID
+    );
   } catch (error) {
     console.log(error);
   }
+}
+
+function updateEnvFile() {
+  // Read the current environment variables from the .env file
+  dotenv.config();
+
+  // Update the value of the appId variable
+  process.env.appId = STAGED_APP_ID;
+
+  // Read the current environment variables from the .env file
+  const data = fs.readFileSync(".env", "utf-8");
+
+  // Replace the value of the specific variable in the file
+  const newData = data.replace(/appId=(.*)/g, `appId=${STAGED_APP_ID}`);
+
+  // Save the updated environment variables to the .env file
+  fs.writeFileSync(".env", newData);
 }
 
 async function create_managed_space() {
@@ -387,7 +407,7 @@ async function makeGetCall(tenantUrl, token, path) {
     });
     console.log(
       "🚀 makeGetCall ~ to url: ",
-      response.config.url,
+      response.config.url
       // response.config.headers
     );
     return response.data;
