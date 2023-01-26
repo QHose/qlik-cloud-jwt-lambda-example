@@ -81,7 +81,7 @@ async function setup() {
   }
 }
 
-// setup(); activate if you want it to run the setup each time the nodejs server starts...
+
 
 
 const envFields = {
@@ -107,3 +107,4 @@ if (!fs.existsSync(envFile)) {
     console.log(".env file already exists.")
 }
 
+setup(); //activate if you want it to run the setup each time the nodejs server starts...
