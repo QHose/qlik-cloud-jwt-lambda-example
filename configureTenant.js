@@ -30,18 +30,19 @@ exports.configureTenant = async function () {
   try {
     // Request an access token
     TARGET_ACCESS_TOKEN = await requestAccessToken(TARGET_TENANT);
-    // await getTenantId(TARGET_TENANT, TARGET_ACCESS_TOKEN);
-    // await autoCreationOfGroups();
-    // await setUserEntitlement();
-    // await createIdP();
-    // // Add groups to the tenant
-    // var jwt = await createJWTwithDummyGroups();
-    // await jwtLogin(jwt);
-    // await create_shared_space();
-    // await create_managed_space();
-    // add groui
-    // await import_app();
+    await getTenantId(TARGET_TENANT, TARGET_ACCESS_TOKEN);
+    await autoCreationOfGroups();
+    await setUserEntitlement(); //assign analyser or professional user license
+    await createIdP();
+
+    // Add groups to the tenant
+    var jwt = await createJWTwithDummyGroups();
+    await jwtLogin(jwt);
+    await create_shared_space();
+    await create_managed_space();
+    await import_app();
    await getGroupId(process.env.groupForAnonUsers);
+   await assignGroupToSpace(SHARED_SPACE_ID);
   } catch (error) {
     if (error.response) {
       console.log(error.response.data);
@@ -56,7 +57,35 @@ exports.configureTenant = async function () {
   }
 };
 
+async function assignGroupToSpace(space_id){
+  try {
+    const response = await axios.post(`https://${TARGET_TENANT}/api/v1/spaces/${space_id}/assignments`, 
+      {
+        "type": "group",
+        "assigneeId": GROUP_ID_TO_BE_ASSIGNED,
+        "roles": ["consumer"]
+      }
+    , {
+      headers: {
+        Authorization: `Bearer ${TARGET_ACCESS_TOKEN}`,
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      }
+    });
+    console.log(`INFO: The group with ID '${GROUP_ID_TO_BE_ASSIGNED}' has been assigned to the space with ID '${space_id}' with the 'consumer' role in tenant '${TARGET_TENANT}'.`);
+  } catch (error) {
+    // if (error.response.data.code === 'AssignmentConflict') {
+    //   console.log(`INFO: The group with ID '${GROUP_ID_TO_BE_ASSIGNED}' is already assigned to the space with ID '${space_id}' in tenant '${TARGET_TENANT}'.`);
+    // } else {
+      console.log(`ERROR: Failed to assign group with ID '${GROUP_ID_TO_BE_ASSIGNED}' to the space with ID '${space_id}' in tenant '${TARGET_TENANT}. You probably already assigned the group before... `, error.response.data);
+      process.exit(1);
+    // }
+  }
+}
+
+
 //https://qlik.dev/tutorials/deploy-a-qlik-sense-application-to-a-tenant#2-deploy-the-application-to-the-shared-space
+//https://qlik.dev/apis/rest/apps#%23%2Fentries%2Fv1%2Fapps%2Fimport-post
 async function import_app() {
   const filePath = "./Sales.qvf";
   const data = fs.readFileSync(filePath);
@@ -95,6 +124,7 @@ async function getGroupId(name){
   console.log("🚀 ~ file: configureTenant.js:92 ~ getGroupId ~ ", groups)
   if (groups.data.length){
     GROUP_ID_TO_BE_ASSIGNED = groups.data[0].id;
+    console.log("🚀 ~ file: configureTenant.js:125 ~ getGroupId ~ GROUP_ID_TO_BE_ASSIGNED", GROUP_ID_TO_BE_ASSIGNED)
   }
 }
 async function create_managed_space() {
