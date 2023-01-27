@@ -28,17 +28,16 @@ If you like this tool can automatically
 - Enable auto creation of groups if the user logs in (you need this because you first have to login with the user and his groups, before you can assign a group to a space)
 - Set user entitlement assignment behavior (analyser, professional...)
 - Configure an identity provider
-- Configure authorization using JSON web tokens
-- Add groups to the tenant
+- Configure authorization using JSON web tokens, it wlil add groups to the tenant by loggin in as user with those groups. This ensures the groups from your IdP are now known to Qlik and you can assign them in spaces. 
+- Create the shared space
+- Upload a demo sales app to this shared space
+- Add a group to a shared space with the consumer role (this ensures your "anon group" can see things inside a space)
 
 The output of the tool in the console will look like this: 
 ![image](https://user-images.githubusercontent.com/12411165/214327802-0ffe220c-05d1-4fe4-9ab0-b6dfc8b83b55.png)
 
 
-## Create spaces in a tenant (To Do - not yet built)
-- Create the managed space
-- Add a group to a managed space with the consumer role
-- Add a group and assign it a role on the managed space
+
 # Create tenant specific OAUTH client
 
 * Follow the [steps](https://help.qlik.com/en-US/cloud-services/Subsystems/Hub/Content/Sense_Hub/Admin/mc-create-oauth-client.htm) to create a `web` OAUTH client, select the option `Allow Machine-to-Machine (M2M)`. Skip step 6: Leave the redirect fields empty. Click Copy to clipboard to save the client ID and client secret for later use. Store the client secret in a secure location. Click Done.
