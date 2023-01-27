@@ -37,13 +37,6 @@ The output of the tool in the console will look like this:
 ![image](https://user-images.githubusercontent.com/12411165/214327802-0ffe220c-05d1-4fe4-9ab0-b6dfc8b83b55.png)
 
 
-
-# Create tenant specific OAUTH client
-
-* Follow the [steps](https://help.qlik.com/en-US/cloud-services/Subsystems/Hub/Content/Sense_Hub/Admin/mc-create-oauth-client.htm) to create a `web` OAUTH client, select the option `Allow Machine-to-Machine (M2M)`. Skip step 6: Leave the redirect fields empty. Click Copy to clipboard to save the client ID and client secret for later use. Store the client secret in a secure location. Click Done.
-* next you have to edit your new OAUTH client, and set the `consent method` to `trusted`. You have two options for consent: Required and Trusted. 
-
-
 # The authentication flow in the source code for demo1
 
 - The anonymous user accesses the site with the embedded content from the Qlik Cloud tenant. 
@@ -86,11 +79,18 @@ if you want to login users from your SaaS platform instead you just need to modi
 
 ![image](https://user-images.githubusercontent.com/12411165/213195488-f287cce9-a6a6-4982-a29c-6d5d42021297.png)
 
-# Succesful flow result
+# Succesful flow result for demo1
 
 ![image](https://user-images.githubusercontent.com/12411165/213196317-adda1917-0bb9-4d22-9bb1-3c38526cc4a7.png)
 
 so in the log you will first see a 401, the user does not have a cookie, so request a token, send it to the jwt-session endpoint using a POST, receive a cookie, and open the IFrame.
+
+
+# Create tenant specific OAUTH client
+
+* Follow the [steps](https://help.qlik.com/en-US/cloud-services/Subsystems/Hub/Content/Sense_Hub/Admin/mc-create-oauth-client.htm) to create a `web` OAUTH client, select the option `Allow Machine-to-Machine (M2M)`. Skip step 6: Leave the redirect fields empty. Click Copy to clipboard to save the client ID and client secret for later use. Store the client secret in a secure location. Click Done.
+* next you have to edit your new OAUTH client, and set the `consent method` to `trusted`. You have two options for consent: Required and Trusted. 
+
 
 # Create OAuth client via MyQlik
 
