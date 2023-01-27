@@ -52,7 +52,7 @@ app.get("/token", (req, res) => {
   const sub = `sub_${uuid}`;
   const name = 'Anonymous user'
   const email = `${uuid}@anonymoususer.anon`;
-  const groups = ['anonymous'];
+  const groups = [proces.env.groupForAnonUsers];
   
   const genT = token.generate(sub, name, email, groups);
   res.json({ token: genT });
@@ -83,7 +83,7 @@ async function setup() {
 
 
 
-
+// Create the .env file the first time if the /setup path is run and if it not already exists.
 const envFields = {
   qlikWebIntegrationId: "q53JKnG6HxRKeSeDdUK88_pDo5mmGUQC",
   tenantDomain: "bies.eu.qlikcloud.com",
@@ -94,7 +94,8 @@ const envFields = {
   tenantAdminEmail: "martijn.biesbroek@qlik.com",
   IdPSubject: "auth0|a08D000000kgjwSIAQ",
   clientId: "",
-  clientSecret: ""
+  clientSecret: "",
+  groupForAnonUsers: "anonymous"
 };
 
 const envFile = ".env";

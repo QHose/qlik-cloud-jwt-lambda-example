@@ -21,6 +21,7 @@ var MANAGED_SPACE_NAME = "Anon_managed";
 var SHARED_SPACE_NAME = "Anon_shared";
 var SHARED_SPACE_ID = "";
 var STAGED_APP_ID = "";
+var GROUP_ID_TO_BE_ASSIGNED = "";
 
 //configure tenant https://qlik.dev/tutorials/configure-a-tenant
 exports.configureTenant = async function () {
@@ -36,9 +37,11 @@ exports.configureTenant = async function () {
     // // Add groups to the tenant
     // var jwt = await createJWTwithDummyGroups();
     // await jwtLogin(jwt);
-    await create_shared_space();
+    // await create_shared_space();
     // await create_managed_space();
-    await import_app();
+    // add groui
+    // await import_app();
+   await getGroupId(process.env.groupForAnonUsers);
   } catch (error) {
     if (error.response) {
       console.log(error.response.data);
@@ -64,7 +67,7 @@ async function import_app() {
 
   var config = {
     method: "post",
-    url: `https://bies.eu.qlikcloud.com/api/v1/apps/import?spaceId=${SHARED_SPACE_ID}`,
+    url: `https://bies.eu.qlikcloud.com/api/v1/apps/import?mode=autoreplace&spaceId=${SHARED_SPACE_ID}`,
     headers: {
       Accept: "application/json",
       "Content-Type": "application/octet-stream",
@@ -86,23 +89,14 @@ async function import_app() {
   }
 }
 
-function updateEnvFile() {
-  // Read the current environment variables from the .env file
-  dotenv.config();
-
-  // Update the value of the appId variable
-  process.env.appId = STAGED_APP_ID;
-
-  // Read the current environment variables from the .env file
-  const data = fs.readFileSync(".env", "utf-8");
-
-  // Replace the value of the specific variable in the file
-  const newData = data.replace(/appId=(.*)/g, `appId=${STAGED_APP_ID}`);
-
-  // Save the updated environment variables to the .env file
-  fs.writeFileSync(".env", newData);
+//https://{{target_tenant}}.{{region}}.qlikcloud.com/api/v1/groups?filter=name eq "{{group}}"
+async function getGroupId(name){
+  var groups = await makeGetCall(TARGET_TENANT, TARGET_ACCESS_TOKEN, `/api/v1/groups?filter=name eq "${name}"`);
+  console.log("🚀 ~ file: configureTenant.js:92 ~ getGroupId ~ ", groups)
+  if (groups.data.length){
+    GROUP_ID_TO_BE_ASSIGNED = groups.data[0].id;
+  }
 }
-
 async function create_managed_space() {
   try {
     const managed_space_data = {
@@ -199,13 +193,14 @@ async function requestAccessToken(tenantType) {
         },
       }
     );
+    console.log("🚀 ~ file: main.js ~ line 44 ~ requestAccessToken ~ response", response.data.access_token)
     return response.data.access_token;
   } catch (error) {
     console.error(
       "Failed to make first API call, this probably means that you dont have the correct OAUTH Credentials"
     );
+    console.error("URL called: "+error.response.config.url+" with the following parameters: "+error.response.config.data)
   }
-  // console.log("🚀 ~ file: main.js ~ line 44 ~ requestAccessToken ~ response", response)
 }
 
 async function createJWTwithDummyGroups() {
@@ -218,7 +213,7 @@ async function createJWTwithDummyGroups() {
     config.IdPSubject,
     "Initial load of the groups",
     config.tenantAdminEmail,
-    ["Admin", "Finance", "Marketing", "Sales", "Anonymous"]
+    ["Admin", "Finance", "Marketing", "Sales", process.env.groupForAnonUsers]
   );
   return jwt;
 }
@@ -417,4 +412,21 @@ async function makeGetCall(tenantUrl, token, path) {
       error
     );
   }
+}
+
+function updateEnvFile() {
+  // Read the current environment variables from the .env file
+  dotenv.config();
+
+  // Update the value of the appId variable
+  process.env.appId = STAGED_APP_ID;
+
+  // Read the current environment variables from the .env file
+  const data = fs.readFileSync(".env", "utf-8");
+
+  // Replace the value of the specific variable in the file
+  const newData = data.replace(/appId=(.*)/g, `appId=${STAGED_APP_ID}`);
+
+  // Save the updated environment variables to the .env file
+  fs.writeFileSync(".env", newData);
 }
