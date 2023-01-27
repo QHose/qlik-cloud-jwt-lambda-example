@@ -88,7 +88,7 @@ const envFields = {
   qlikWebIntegrationId: "q53JKnG6HxRKeSeDdUK88_pDo5mmGUQC",
   tenantDomain: "bies.eu.qlikcloud.com",
   appId: "c8133385-b9bf-4b27-af62-1faf52db8f1a",
-  sheetId: "XkgjPf",
+  sheetId: "c6c61359-3845-4f78-897a-33d3cf84bf4a",
   issuer: "myIssuer",
   keyid: "myKeyId",
   tenantAdminEmail: "martijn.biesbroek@qlik.com",
@@ -108,4 +108,4 @@ if (!fs.existsSync(envFile)) {
     console.log(".env file already exists.")
 }
 
-setup(); //activate if you want it to run the setup each time the nodejs server starts...
+// setup(); //activate if you want it to run the setup each time the nodejs server starts...

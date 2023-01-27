@@ -87,7 +87,7 @@ async function assignGroupToSpace(space_id){
 //https://qlik.dev/tutorials/deploy-a-qlik-sense-application-to-a-tenant#2-deploy-the-application-to-the-shared-space
 //https://qlik.dev/apis/rest/apps#%23%2Fentries%2Fv1%2Fapps%2Fimport-post
 async function import_app() {
-  const filePath = "./Sales.qvf";
+  const filePath = "./24 Days of Visualization.qvf";
   const data = fs.readFileSync(filePath);
 
   if (!fs.existsSync(filePath)) {

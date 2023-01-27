@@ -4,7 +4,7 @@
       <h1>Main Page</h1>
       This is the main page... Below we try to open an IFRAME pointing to a
       sheet from an app running in Qlik Cloud. Open your browser console to see
-      details.
+      details. First you will see an error if the user is not already logged it, if so, we will create a JWT on the server with the userId and group memberships of the user, and make a POST to Qlik Cloud. This will inject a cookie in the browser which can be used for subsequent calls. See Integration.qlik.com for more details (select Qlik Cloud). 
       <hr />
       <h1>Qlik Cloud content</h1>
       <iframe
