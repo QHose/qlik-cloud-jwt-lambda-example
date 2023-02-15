@@ -9,13 +9,13 @@ An example web page using JSON web tokens to process authorization to a Qlik Clo
 # Introduction of use cases
 This software can
 * demo1: Present you a simple HTML page in which a sheet is embedded from a SaaS tenant you configured in the `.env` file.
-* demo2: Setup your "empty" SaaS tenant by inserting some groups and creating an Idp.
+* demo2: Setup your "empty" SaaS tenant by inserting some groups and creating an Idp. Used as preparation for demo1.
 
 # Run the code demo 1
 - update the .env file in the project root directory with your credentials. (If it isn't there it will be created for you the first time you run the server. Next you can edit it.) ![image](https://user-images.githubusercontent.com/12411165/214322813-81d1a544-98d8-433f-80f5-5d7b3092e4b4.png)
 
 - update your [qlik tenant web integration id](https://help.qlik.com/en-US/cloud-services/Subsystems/Hub/Content/Sense_Hub/Admin/mc-adminster-web-integrations.htm) to include `https://localhost:3000`
-- Publish an app in a space, make a note of the app id and the sheet id (view in browser url bar) and insert into the `.env` file.
+- If you don't run demo2: Publish an app in a space, make a note of the app id and the sheet id (view in browser url bar) and insert into the `.env` file.
 - Only needed if you did not yet create an IdP and already have groups in your system: Create an Oauth client (see below)
 - go to project source directory in powershell/cmd and run `npm install` and next  `node server.js`
 - Open your browser and view https://localhost:3000/
