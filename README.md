@@ -1,5 +1,7 @@
 # Embed Qlik Sense Cloud sheet with anonymous/local user using JWT 
 
+This readme contains the explanation belonging to [this github project](https://github.com/QHose/qlik-cloud-localserver-jwt-IFrame)
+
 An example web page using JSON web tokens to process authorization to a Qlik Cloud tenant using JWT to insert the (dummy) user/group memberships to simulate anonymous users. Beaware that anonymous usages in currently not available in Qlik Cloud (as opposed to Client Managed where you could create an anon virtual proxy). 
 
 >You can also connect to your own identity software, and just get the userID and group memberships and inject it into the JWT token. 
