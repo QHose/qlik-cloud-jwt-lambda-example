@@ -1,4 +1,4 @@
-# Embed Qlik Sense Cloud sheet with anonymous/local user using JWT 
+# Embed Qlik Cloud - Sense sheet using JWT 
 
 This readme contains the explanation belonging to [this github project](https://github.com/QHose/qlik-cloud-localserver-jwt-IFrame)
 
