@@ -1,6 +1,6 @@
 # TLDR
 
-This page contains the explanation belonging to [this github project](https://github.com/QHose/qlik-cloud-localserver-jwt-IFrame). If you download and run the project you it can setup/configure Qlik Sense SaaS (demo2) and show a sheet embedded via an IFrame (demo1)
+This page contains the explanation belonging to [this github project](https://github.com/QHose/qlik-cloud-localserver-jwt-IFrame). If you download and run the project you it can setup/configure Qlik Sense SaaS (demo2) and demonstrate what a Qlik Sense sheet looks like embedded via an IFrame (demo1)
 
 # Introduction
 An example web page using JSON web tokens to process authorization to a Qlik Cloud tenant using JWT to insert the (dummy) user/group memberships to simulate anonymous users. Beaware that anonymous usages in currently not available in Qlik Cloud (as opposed to Client Managed where you could create an anon virtual proxy). 
@@ -100,6 +100,6 @@ so in the log you will first see a 401, the user does not have a cookie, so requ
 * go to `https://account.myqlik.qlik.com/account`
 * Create Oauth client ![image](https://user-images.githubusercontent.com/12411165/213698119-e396da53-908a-4529-80d4-f152648a0943.png)
 * Copy and save the values in the project root .env file ![image](https://user-images.githubusercontent.com/12411165/213698370-7187ee47-44af-4023-b3b9-d21ead85e969.png)
-![Uploading image.png…]()
+
 
 
