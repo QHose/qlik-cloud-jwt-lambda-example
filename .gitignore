@@ -1,2 +1,5 @@
 # Ignore all zip files
 *.zip
+*.env
+*.pem
+node_modules/
