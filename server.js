@@ -52,7 +52,7 @@ app.get("/token", (req, res) => {
   const sub = `sub_${uuid}`;
   const name = 'Anonymous user'
   const email = `${uuid}@anonymoususer.anon`;
-  const groups = [proces.env.groupForAnonUsers];
+  const groups = [process.env.groupForAnonUsers];
   
   const genT = token.generate(sub, name, email, groups);
   res.json({ token: genT });
